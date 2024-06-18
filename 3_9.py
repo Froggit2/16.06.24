@@ -1,30 +1,24 @@
 class EvenNumbers:
 
-    def __init__(self, start=None, end=None):
-        self.start = start
+    def __init__(self, start=0, end=1):
+        self.start = start - 1
         self.end = end
-        self.counter_1 = 0
-        if self.start is None:
-            self.start = 0
-        if self.end is None:
-            self.end = 1
         if self.start > self.end:
-            print('Начало больше конца!')
-            pass
+            raise StopIteration("Начало больше конца!")
 
     def __iter__(self):
-        self.counter_1 = 0
         return self
 
     def __next__(self):
-        for i in range(self.start, self.end):
-            self.counter_1 += 1
-            if i % 2 == 0:
-                continue
-            if self.counter_1 >= self.end:
-                break
+        self.start += 1
+        if self.start % 2 == 0:
+            return self.start
+        if self.start >= self.end:
+            raise StopIteration
+        if self.start % 2 != 0:
+            return ''
 
 
 EN = EvenNumbers(10, 25)
-for g in range(EN.start, EN.end):
-    print(g)
+for num in EN:
+    print(num)
