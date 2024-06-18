@@ -15,10 +15,10 @@ class EvenNumbers:
             return self.start
         if self.start >= self.end:
             raise StopIteration
-        if self.start % 2 != 0:
-            return ''
 
 
 EN = EvenNumbers(10, 25)
 for num in EN:
+    if num is None:
+        continue
     print(num)
